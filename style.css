@@ -4,8 +4,15 @@ body {
 
 .svg{
  background-color:  #2A343F;
-
+ margin-right: 50px;
 }
+
+.svg2{
+ background-color:  #2A343F;
+ margin-right: 50px;
+ margin-top : 10px;
+}
+
 .yaxis path{
     fill: none;
     stroke-width: 0;
@@ -33,17 +40,17 @@ body {
     stroke-width: 0.5;
 }
 
-
-
-
-
 .line {
       fill : none;
       stroke-linejoin : square;
       stroke-linecap : square;
-      stroke-width : 4;                  
+      stroke-width : 4;   
+      stroke: #E88220;               
 }
 
+.circle{
+    fill :rgba(153,153,153,0.5)
+}
 .title{
     font-size : 20;
     stroke: lightgrey;
@@ -52,15 +59,15 @@ body {
 }
 
 .dashed {
-   stroke: lightgrey;
-   stroke-width: 2px;
+   stroke: grey;
+   stroke-width: 1px;
    stroke-dasharray: 5,3;
 }
 
 div.tooltip {	
     position: absolute;			
     text-align: center;			
-    width: 60px;					
+    width: 80px;					
     height: 28px;					
     padding: 2px;				
     font: 12px sans-serif;		
