@@ -2,13 +2,18 @@ body {
     font-family: "Helvetica";
 }
 
+.svg{
+ background-color:  #2A343F;
+
+}
 .yaxis path{
     fill: none;
     stroke-width: 0;
 }
 
 .yaxis text{
-    stroke: grey;
+    fill :#999999;
+    stroke: #999999;
    stroke-width: 0.5;
 }
 
@@ -19,13 +24,16 @@ body {
 }
 
 .xaxis text{
-    stroke: grey;
+    fill :#999999;
+    stroke: #999999;
     stroke-width: 0.5;
 }
 .legendText{
      stroke: grey;
     stroke-width: 0.5;
 }
+
+
 
 
 
@@ -47,4 +55,17 @@ body {
    stroke: lightgrey;
    stroke-width: 2px;
    stroke-dasharray: 5,3;
+}
+
+div.tooltip {	
+    position: absolute;			
+    text-align: center;			
+    width: 60px;					
+    height: 28px;					
+    padding: 2px;				
+    font: 12px sans-serif;		
+    background: rgba(232,130,32,0.5);	
+    border: 0px;		
+    border-radius: 8px;			
+    pointer-events: none;			
 }

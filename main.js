@@ -36,7 +36,8 @@ var parseDate = d3.time.format("%m/%d/%Y").parse;
 var svg = d3.select("body")
             .append("svg")
             .attr("width", config.svgWidth)
-            .attr("height", config.svgHeight);
+            .attr("height", config.svgHeight)
+            .attr("class","svg");
 
  g = svg.append("g").attr("transform", "translate(" + config.svgMargin.left + "," + config.svgMargin.top + ")");
  
@@ -87,36 +88,69 @@ var xScale = d3.scale.linear()
                .range([0,width]);
 
 var yScale = d3.scale.linear()
-               .domain([0,d3.max(parsedData, function(d) { return d.value; })])
+                .domain([d3.min(parsedData, function (d) { return d.value; }) - 0.7, 
+                         d3.max(parsedData, function (d) { return d.value; }) + 0.3])
                .range([ height,0]);
 
 
 var x2Scale =  d3.scale.linear()
-                        .domain([2014,2015,2016])
+                        .domain([2014,2016])
                         .range([0, width / 12]);
 
+
 var line = d3.svg.line()
-       .interpolate("basis")
-        .x(function(d) { console.log(x2Scale(d.year)); return  x2Scale(d.year);}) 
-        .y(function(d) { console.log(yScale(d.ccy)); return yScale(d.ccy)}); 
+           //.interpolate("basis")
+             .x(function(d) { console.log(x2Scale(d.year)); return  x2Scale(d.year);}) 
+             .y(function(d) { console.log(yScale(d.ccy)); return yScale(d.ccy)}); 
 
 
-var lines  = g.selectAll("g")
-              .data(chartData)
-              .enter()
-              .append("g")
-              .attr("transform", function(d,i){ return  "translate(" +  i * (width / 12)+ ")" }) 
-                .selectAll("path") 
-                .data( function(d) { return d; } ) //lines
-                .enter() 
-                .append("path")
-                .attr("stroke", "red")
-                .attr("class", "line")
-                .attr("d", d3.svg.line()
-                                .x(function(d) { return  x2Scale(d.year);}) 
-                                .y(function(d) { return yScale(d.ccy)})
-                );
+var myGroups  = g.selectAll("g")
+              .data(chartData);
 
+var enteredGroups = myGroups.enter()
+                            .append("g")
+                            .attr("transform", function(d,i){ return  "translate(" +  i * (width / 12)+ ")" }) ;
+
+enteredGroups.append("path");
+enteredGroups.append("line");
+
+
+myGroups.select("path")
+        .attr("stroke", "#E88220")
+        .attr("class", "line")
+        .attr("d", function(d){ return line(d) });
+
+myGroups.select("line")
+        .attr("x1", function(d){ return  x2Scale(2016)})
+        .attr("x2", function(d){ return  x2Scale(2016)})
+        .attr("y1", 0)
+        .attr("y2", height)
+        .attr("class", "dashed");
+
+var div = d3.select("body").append("div")	
+    .attr("class", "tooltip")				
+    .style("opacity", 0);
+
+myGroups.selectAll("dot")	
+        .data(function(d){ return d})			
+    .enter().append("circle")								
+        .attr("r", 5)
+        .attr("fill","rgba(153,153,153,0.5)")		
+        .attr("cx", function(d) { return x2Scale(d.year); })		 
+        .attr("cy", function(d) { return yScale(d.ccy); })		
+        .on("mouseover", function(d) {		
+            div.transition()		
+                .duration(200)		
+                .style("opacity", .9);		
+            div.html( "Year:"+ d.year +"<br/>"  +"Ccy:"+ d.ccy.toFixed(2))	
+                .style("left", (d3.event.pageX) + "px")		
+                .style("top", (d3.event.pageY - 28) + "px");	
+            })					
+        .on("mouseout", function(d) {		
+            div.transition()		
+                .duration(500)		
+                .style("opacity", 0);	
+        });
 
 
 var yAxis = d3.svg.axis()
@@ -146,4 +180,6 @@ var xAxis = d3.svg.axis()
 g.append("g")
             .attr("class", "yaxis")
             .call(yAxis);
+
+
 }
