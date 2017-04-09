@@ -1,0 +1,50 @@
+body {
+    font-family: "Helvetica";
+}
+
+.yaxis path{
+    fill: none;
+    stroke-width: 0;
+}
+
+.yaxis text{
+    stroke: grey;
+   stroke-width: 0.5;
+}
+
+.xaxis path {
+    fill: none;
+    stroke: lightgrey;
+    stroke-width: 1;
+}
+
+.xaxis text{
+    stroke: grey;
+    stroke-width: 0.5;
+}
+.legendText{
+     stroke: grey;
+    stroke-width: 0.5;
+}
+
+
+
+.line {
+      fill : none;
+      stroke-linejoin : square;
+      stroke-linecap : square;
+      stroke-width : 4;                  
+}
+
+.title{
+    font-size : 20;
+    stroke: lightgrey;
+    letter-spacing: 4px;
+    fill : lightgrey;
+}
+
+.dashed {
+   stroke: lightgrey;
+   stroke-width: 2px;
+   stroke-dasharray: 5,3;
+}
