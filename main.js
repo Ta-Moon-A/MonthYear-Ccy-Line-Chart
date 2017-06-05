@@ -53,7 +53,7 @@ d3.csv("currency_data.csv")
             if(error) throw error;
             parsedData = callBackData;
             ProcessData();
-            ProcessData2();
+           
 });
 
 
