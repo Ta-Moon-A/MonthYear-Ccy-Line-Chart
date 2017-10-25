@@ -1,4 +1,4 @@
-body {
+/* body {
     font-family: "Helvetica";
 }
 
@@ -58,11 +58,6 @@ body {
     fill : lightgrey;
 }
 
-.dashed {
-   stroke: grey;
-   stroke-width: 1px;
-   stroke-dasharray: 5,3;
-}
 
 div.tooltip {	
     position: absolute;			
@@ -75,4 +70,4 @@ div.tooltip {
     border: 0px;		
     border-radius: 8px;			
     pointer-events: none;			
-}
+} */
