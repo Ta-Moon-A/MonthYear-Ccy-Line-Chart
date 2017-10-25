@@ -135,7 +135,7 @@ function PaintChart() {
     .attr("class", "tooltip")
     .style("opacity", 0)
     .style('text-align', 'center')
-    .style('width', '80px')
+    .style('width', '150px')
     .style('height', '28px')
     .style('padding', '2px')
     .style('background', 'grey')
@@ -179,7 +179,7 @@ function PaintChart() {
       div.transition()
         .duration(200)
         .style("opacity", .9);
-      div.html("Date:" + d.year + "/" + d.month + "<br/>" + "Ccy:" + d.ccy.toFixed(2))
+      div.html(d.year + " / " + monthNames[d.month].name + "<br/>" + "" + d.ccy.toFixed(2)+" USD / GEL")
         .style("left", (d3.event.pageX) + "px")
         .style("top", (d3.event.pageY - 28) + "px");
     })
